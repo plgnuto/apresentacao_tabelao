@@ -14,7 +14,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #001651;
-            overflow: hidden;
+            overflow: hidden; /* apresentação sem rolagem */
         }
 
         .presentation-container {
@@ -23,24 +23,37 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-bottom: 72px; /* espaço para os botões de navegação */
         }
 
         .slide {
             background: white;
             width: 90%;
             max-width: 1200px;
-            height: 80vh;
+            height: 80vh; /* altura alvo do slide */
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             padding: 18px 50px 40px 50px;
             display: none;
-            overflow-y: hidden;
+            overflow: hidden; /* sem rolagem no slide */
             position: relative;
         }
 
         .slide.active {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Conteúdo interno do slide que receberá escala dinâmica */
+        .slide-inner {
+            transform-origin: top center;
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            will-change: transform;
         }
 
         .logo-header {
@@ -400,11 +413,14 @@
 
         .navigation {
             position: fixed;
-            bottom: 30px;
+            bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
         }
 
         .nav-btn {
@@ -416,6 +432,11 @@
             cursor: pointer;
             font-size: 16px;
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 520px) {
+            .navigation { flex-wrap: wrap; gap: 8px; }
+            .nav-btn { width: 100%; max-width: 260px; }
         }
 
         .nav-btn:hover {
@@ -848,13 +869,47 @@
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
 
+        // Envolve o conteúdo de cada slide em .slide-inner (exclui .slide-number)
+        function wrapSlidesContent() {
+            slides.forEach(slide => {
+                if (slide.querySelector('.slide-inner')) return;
+                const inner = document.createElement('div');
+                inner.className = 'slide-inner';
+                const children = Array.from(slide.children).filter(el => !el.classList.contains('slide-number'));
+                children.forEach(el => inner.appendChild(el));
+                slide.appendChild(inner);
+                // Garante que o número do slide fique por cima
+                const number = slide.querySelector('.slide-number');
+                if (number) slide.appendChild(number);
+            });
+        }
+
+        function scaleSlide(slide) {
+            const inner = slide.querySelector('.slide-inner');
+            if (!inner) return;
+            inner.style.transform = 'scale(1)';
+            // Espaço disponível dentro do cartão
+            const availableW = slide.clientWidth;
+            const availableH = slide.clientHeight;
+            // Tamanho do conteúdo real
+            const contentW = inner.scrollWidth;
+            const contentH = inner.scrollHeight;
+            const scale = Math.min(availableW / contentW, availableH / contentH, 1);
+            inner.style.transform = `scale(${scale})`;
+        }
+
+        function scaleActive() {
+            scaleSlide(slides[currentSlide]);
+        }
+
         function showSlide(n) {
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
-            
             document.getElementById('prevBtn').disabled = currentSlide === 0;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            // Ajusta escala após ativar
+            requestAnimationFrame(scaleActive);
         }
 
         function changeSlide(direction) {
@@ -871,8 +926,22 @@
             if (e.key === 'ArrowRight') changeSlide(1);
         });
 
-        // Initialize
-        showSlide(0);
+        // Recalcula ao redimensionar a janela
+        window.addEventListener('resize', () => {
+            scaleActive();
+        });
+
+        // Ajusta após imagens carregarem
+        window.addEventListener('load', () => {
+            wrapSlidesContent();
+            document.querySelectorAll('img').forEach(img => {
+                if (img.complete) return;
+                img.addEventListener('load', scaleActive);
+                img.addEventListener('error', scaleActive);
+            });
+            showSlide(0);
+            scaleActive();
+        });
     </script>
 </body>
 </html>
