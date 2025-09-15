@@ -644,13 +644,14 @@
         }
 
         .pricing-card {
-            background: linear-gradient(135deg, #001651, #003399);
+            background: linear-gradient(135deg, #0066cc, #004080);
             color: white;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 15px 20px;
+            border-radius: 12px;
             text-align: center;
-            margin: 25px auto;
-            max-width: 400px;
+            max-width: 350px;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .price {
@@ -672,6 +673,32 @@
             color: white;
             font-size: 1.6em;
             margin-bottom: 15px;
+        }
+
+        .pilot-slide .slide-header {
+            margin-bottom: 16px;
+        }
+        
+        .pilot-slide h2 {
+            font-size: 1.7em !important;
+            margin-bottom: 6px !important;
+            color: #001651;
+        }
+        
+        .pilot-slide .subtitle {
+            font-size: 0.95em !important;
+            margin-bottom: 10px !important;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        .pilot-slide .pricing-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .pilot-slide .pricing-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12) !important;
         }
 
         /* Seção de QR Code */
@@ -935,25 +962,36 @@
                 <h2>Proposta de Piloto</h2>
                 <p class="subtitle">Validação do produto sem compromisso</p>
             </div>
-            <div class="pricing-card" style="margin: 20px auto;">
-                <h3 style="color: white;">Piloto Gratuito</h3>
-                <div class="price">30 dias</div>
-                <p>Teste completo sem compromisso financeiro</p>
-            </div>
-            <div style="background: #f8f9fa; padding: 16px; border-radius: 12px; margin: 18px 0;">
-                <h4>📋 O que está incluído no piloto:</h4>
-                <ul style="margin-top: 10px; line-height: 1.45; font-size: 0.95em;">
-                    <li>Sistema completo para 10-15 corretores selecionados</li>
-                    <li>Treinamento inicial da equipe</li>
-                    <li>Suporte técnico via WhatsApp durante todo o período</li>
-                    <li>Coleta de feedback e ajustes necessários</li>
-                </ul>
-            </div>
-            <div style="background: linear-gradient(135deg, #001651, #003399); color: white; padding: 16px; border-radius: 12px; text-align: center;">
-                <h3 style="color: white; margin-bottom: 12px;">🎯 Objetivo do Piloto</h3>
-                <p style="font-size: 1.0em;">Validar o valor real do sistema na rotina dos corretores</p>
-                <p style="font-size: 1.0em;">Identificar oportunidades de melhoria</p>
-                <p style="font-size: 1.0em;"><strong>Decisão comercial apenas após comprovação dos resultados</strong></p>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 520px; margin: 0 auto; padding: 8px 0;">
+                <div class="pricing-card" style="margin: 0 auto; padding: 14px 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <h3 style="color: white; margin: 0 0 8px 0; font-size: 1.2em;">Piloto Gratuito</h3>
+                    <div class="price" style="font-size: 1.6em; margin: 0 0 4px 0; line-height: 1.1;">30 dias</div>
+                    <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Teste completo sem compromisso financeiro</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 16px; border-radius: 10px; margin: 0 8px; border: 1px solid #e9ecef;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 1em; color: #212529;">📋 O que está incluído:</h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.5; font-size: 0.9em;">
+                        <li style="margin-bottom: 6px;">Sistema para 10-15 corretores</li>
+                        <li style="margin-bottom: 6px;">Treinamento inicial</li>
+                        <li style="margin-bottom: 6px;">Suporte via WhatsApp</li>
+                        <li>Feedback e ajustes</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #001651, #003399); color: white; padding: 16px; border-radius: 10px; margin: 0 8px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <h3 style="color: white; margin: 0 0 12px 0; font-size: 1.05em; display: flex; align-items: center; gap: 8px;">
+                        🎯 Objetivo do Piloto
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <p style="margin: 0; font-size: 0.92em; display: flex; align-items: flex-start; gap: 6px;">
+                            <span>•</span> Validar o valor do sistema</p>
+                        <p style="margin: 0; font-size: 0.92em; display: flex; align-items: flex-start; gap: 6px;">
+                            <span>•</span> Identificar melhorias</p>
+                        <p style="margin: 0; font-weight: bold; font-size: 0.92em; display: flex; align-items: flex-start; gap: 6px;">
+                            <span>•</span> Decisão após resultados</p>
+                    </div>
+                </div>
             </div>
         </div>
 
