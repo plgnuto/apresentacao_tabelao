@@ -282,6 +282,9 @@
             flex-direction: column;
             height: auto;
         }
+        .comparison-card ul {
+            padding-left: 18px; /* pequeno espaço à esquerda dos itens */
+        }
 
         .comparison-card:last-child {
             margin-bottom: 0;
@@ -563,6 +566,25 @@
             margin-bottom: 15px;
         }
 
+        /* Seção de QR Code */
+        .qr-section {
+            text-align: center;
+            margin: 18px 0 10px;
+        }
+        .qr-section h3 {
+            margin-bottom: 10px;
+            color: #001651;
+        }
+        .qr-section img {
+            width: 180px;
+            max-width: 42vw;
+            height: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            border: 1px solid #eee;
+        }
+
         /* Compactação específica para o slide Proposta de Piloto */
         .pilot-slide { padding: 14px 40px 28px 40px; }
         .pilot-slide .logo-header { margin-bottom: 14px; padding: 10px 14px; }
@@ -587,7 +609,7 @@
     <div class="presentation-container">
         <!-- Slide 1: Capa -->
         <div class="slide active">
-            <div class="slide-number">1/7</div>
+            <div class="slide-number">1/6</div>
             <div class="logo-header">
                 <div class="header-left">
                     <img src="https://www.planoeplano.com.br/assets/1ef5bdc/site/images/logo-planoeplano.svg" alt="Plano & Plano" />
@@ -616,7 +638,7 @@
 
         <!-- Slide 2: Problema Atual -->
         <div class="slide">
-            <div class="slide-number">2/7</div>
+            <div class="slide-number">2/6</div>
             <div class="logo-header">
                 <div class="header-left">
                     <img src="https://www.planoeplano.com.br/assets/1ef5bdc/site/images/logo-planoeplano.svg" alt="Plano & Plano" />
@@ -671,7 +693,7 @@
 
         <!-- Slide 3: Funcionalidades -->
         <div class="slide">
-            <div class="slide-number">3/7</div>
+            <div class="slide-number">3/6</div>
             <div class="logo-header">
                 <div class="header-left">
                     <img src="https://www.planoeplano.com.br/assets/1ef5bdc/site/images/logo-planoeplano.svg" alt="Plano & Plano" />
@@ -744,7 +766,7 @@
 
         <!-- Slide 4: Benefícios Quantificáveis -->
         <div class="slide">
-            <div class="slide-number">4/7</div>
+            <div class="slide-number">4/6</div>
             <div class="logo-header">
                 <div class="header-left">
                     <img src="https://www.planoeplano.com.br/assets/1ef5bdc/site/images/logo-planoeplano.svg" alt="Plano & Plano" />
@@ -766,7 +788,7 @@
                     <p>De 10 minutos para 30 segundos na busca</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-number">5.500</div>
+                    <div class="benefit-number">1.000</div>
                     <h4>Usuários Simultâneos</h4>
                     <p>Corretores internos e parceiros</p>
                 </div>
@@ -792,7 +814,7 @@
 
         <!-- Slide 6: Proposta de Piloto -->
         <div class="slide pilot-slide">
-            <div class="slide-number">5/7</div>
+            <div class="slide-number">5/6</div>
             <div class="logo-header">
                 <div class="header-left">
                     <img src="https://www.planoeplano.com.br/assets/1ef5bdc/site/images/logo-planoeplano.svg" alt="Plano & Plano" />
@@ -844,7 +866,7 @@
                 <div></div>
             </div>
             <div class="slide-header">
-                <h2>Próximos Passos</h2>
+                <h2>Obrigado!</h2>
             </div>
             <div class="cta-section">
                 <h3>Vamos Testar Juntos?</h3>
@@ -858,6 +880,11 @@
                     </div>
                 </div>
             </div>
+            <div class="qr-section">
+                <h3>Acesse o aplicativo</h3>
+                <img src="img/qrcode_tabelaonline_with_logo.png" alt="QR Code - Acesse o aplicativo" />
+            </div>
+
             <div style="text-align: center; margin: 30px 0;">
                 <h3>Contatos para o Piloto:</h3>
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin: 15px 0;">
