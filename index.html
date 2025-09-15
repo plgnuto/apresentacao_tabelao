@@ -515,7 +515,7 @@
             width: 100%;
             height: auto;
             object-fit: contain;
-            max-height: 208px; /* -10% */
+            max-height: 160px; /* reduzido mais para evitar corte */
             background: white;
             border-radius: 8px;
         }
@@ -529,7 +529,7 @@
         @media (max-width: 900px) {
             .features-screens { flex-direction: column; align-items: center; gap: 14px; }
             .features-screens .screen { width: 92%; max-width: none; }
-            .features-screens .screen img { max-height: 194px; }
+            .features-screens .screen img { max-height: 150px; }
         }
 
         .feature-item {
@@ -544,15 +544,18 @@
         .feature-icon {
             background: #001651;
             color: white;
-            width: 35px;
-            height: 35px;
+            width: 44px;
+            height: 44px;
+            aspect-ratio: 1 / 1; /* garante círculo perfeito */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 12px;
             font-weight: bold;
-            font-size: 0.9em;
+            font-size: 1.15em;
+            line-height: 1; /* evita achatamento do emoji */
+            flex: 0 0 44px; /* mantém largura fixa */
         }
 
         .pricing-card {
@@ -864,7 +867,6 @@
                     <li>Treinamento inicial da equipe</li>
                     <li>Suporte técnico via WhatsApp durante todo o período</li>
                     <li>Coleta de feedback e ajustes necessários</li>
-                    <li>Relatório de performance e resultados</li>
                 </ul>
             </div>
             <div style="background: linear-gradient(135deg, #001651, #003399); color: white; padding: 16px; border-radius: 12px; text-align: center;">
