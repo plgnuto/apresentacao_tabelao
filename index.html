@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #001651;
+            background: linear-gradient(180deg, #0044aa 0%, #001651 100%);
             overflow: hidden; /* apresentação sem rolagem */
         }
 
@@ -34,7 +34,10 @@
             height: 90vh; /* máximo recomendado sem tocar a navegação */
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            padding: 14px 40px 10px 40px; /* compacta topo e base */
+            --padX: 40px; /* padding horizontal padrão do slide */
+            --padTop: 14px; /* padding superior padrão do slide */
+            --padBottom: 10px; /* padding inferior padrão do slide */
+            padding: var(--padTop) var(--padX) var(--padBottom) var(--padX); /* compacta topo e base */
             display: none;
             overflow: hidden; /* sem rolagem no slide */
             position: relative;
@@ -66,6 +69,15 @@
             border-bottom: 2px solid #f0f0f0;
             background: #001651;
             column-gap: 16px;
+            min-height: 74px; /* padroniza a altura do header */
+            /* Faz o header ocupar toda a largura do cartão branco (full-bleed dentro do slide) */
+            width: calc(100% + 2 * var(--padX));
+            margin-left: calc(-1 * var(--padX));
+            margin-right: calc(-1 * var(--padX));
+            /* Remove a faixa branca superior encaixando o header no topo do cartão */
+            margin-top: calc(-1 * var(--padTop));
+            border-top-left-radius: 20px; /* igual ao slide */
+            border-top-right-radius: 20px; /* igual ao slide */
         }
 
         .logo-header img {
@@ -106,7 +118,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #001651;
+            background: linear-gradient(0deg, #001651, #00267a);
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
@@ -158,7 +170,7 @@
         /* Responsividade para alturas menores */
         @media (max-height: 800px) {
             .logo-header { padding: 10px 14px; }
-            .slide { padding: 14px 36px 36px 36px; }
+            .slide { --padX: 36px; padding: 14px var(--padX) 36px var(--padX); }
             .slide-content { gap: 16px; }
             h2 { font-size: 1.8em; }
             .subtitle { font-size: 1.05em; margin-bottom: 22px; }
@@ -168,7 +180,7 @@
 
         @media (max-height: 680px) {
             .logo-header { padding: 10px 14px; }
-            .slide { padding: 14px 32px 32px 32px; }
+            .slide { --padX: 32px; padding: 14px var(--padX) 32px var(--padX); }
             .slide-content { gap: 12px; }
             h2 { font-size: 1.6em; }
             .subtitle { font-size: 0.95em; margin-bottom: 18px; }
@@ -179,7 +191,7 @@
         /* Ajustes adicionais para alturas menores, evitando rolagem e corte */
         @media (max-height: 720px) {
             .logo-header { margin-bottom: 18px; }
-            .slide { padding: 14px 36px 32px 36px; }
+            .slide { --padX: 36px; padding: 14px var(--padX) 32px var(--padX); }
             .slide-content { gap: 14px; }
             h2 { font-size: 1.55em; }
             .subtitle { font-size: 0.98em; margin-bottom: 18px; }
@@ -190,7 +202,7 @@
 
         @media (max-height: 620px) {
             .logo-header { margin-bottom: 14px; padding: 8px 12px; }
-            .slide { padding: 12px 28px 26px 28px; }
+            .slide { --padX: 28px; padding: 12px var(--padX) 26px var(--padX); }
             .slide-content { gap: 12px; }
             h2 { font-size: 1.4em; }
             .subtitle { font-size: 0.92em; margin-bottom: 14px; }
@@ -205,7 +217,7 @@
 
         @media (max-height: 560px) {
             .logo-header { margin-bottom: 12px; padding: 6px 10px; }
-            .slide { padding: 10px 22px 22px 22px; }
+            .slide { --padX: 22px; padding: 10px var(--padX) 22px var(--padX); }
             .slide-content { gap: 10px; }
             h2 { font-size: 1.3em; }
             .subtitle { font-size: 0.88em; margin-bottom: 12px; }
@@ -222,6 +234,9 @@
             .presentation-container { padding-bottom: 60px; }
             /* Garante que o cartão caiba no viewport menos a reserva inferior */
             .slide { height: calc(100vh - 64px); }
+
+            /* Header com altura e padding idênticos aos slides 1–3 */
+            .logo-header { padding: 12px 18px; min-height: 74px; }
 
             /* Compacta discretamente elementos de UI */
             .nav-btn { padding: 6px 12px; font-size: 13px; border-radius: 16px; }
@@ -258,7 +273,7 @@
         }
 
         @media (max-width: 900px) {
-            .slide { padding: 16px 24px 28px 24px; }
+            .slide { --padX: 24px; padding: 16px var(--padX) 28px var(--padX); }
             .logo-header { margin-bottom: 18px; }
             h2 { font-size: 1.5em; }
             .subtitle { font-size: 0.95em; margin-bottom: 16px; }
@@ -490,7 +505,7 @@
         }
 
         .nav-btn {
-            background: #001651;
+            background: linear-gradient(0deg, #001651, #00267a);
             color: white;
             border: none;
             padding: 8px 16px;
@@ -584,7 +599,7 @@
         }
 
         .feature-icon {
-            background: #001651;
+            background: linear-gradient(0deg, #001651, #00267a);
             color: white;
             width: 44px;
             height: 44px;
@@ -651,7 +666,7 @@
         }
 
         /* Compactação específica para o slide Proposta de Piloto */
-        .pilot-slide { padding: 14px 40px 28px 40px; }
+        .pilot-slide { --padX: 40px; padding: 14px var(--padX) 28px var(--padX); }
         .pilot-slide .logo-header { margin-bottom: 14px; padding: 10px 14px; }
         .pilot-slide .slide-header h2 { margin-bottom: 12px; font-size: 1.8em; }
         .pilot-slide .subtitle { margin-bottom: 12px; font-size: 0.98em; }
@@ -660,7 +675,7 @@
         .pilot-slide h4 { margin: 0 0 6px 0; }
         .pilot-slide ul { margin-top: 8px; }
         @media (max-height: 680px) {
-            .pilot-slide { padding: 12px 32px 24px 32px; }
+            .pilot-slide { --padX: 32px; padding: 12px var(--padX) 24px var(--padX); }
             .pilot-slide .logo-header { margin-bottom: 10px; padding: 8px 12px; }
             .pilot-slide .slide-header h2 { font-size: 1.6em; margin-bottom: 10px; }
             .pilot-slide .subtitle { font-size: 0.92em; margin-bottom: 10px; }
@@ -974,7 +989,10 @@
                 if (slide.querySelector('.slide-inner')) return;
                 const inner = document.createElement('div');
                 inner.className = 'slide-inner';
-                const children = Array.from(slide.children).filter(el => !el.classList.contains('slide-number'));
+                // Não mover .slide-number nem .logo-header para dentro do .slide-inner, para o header não ser escalado
+                const children = Array.from(slide.children).filter(el => {
+                    return !el.classList.contains('slide-number') && !el.classList.contains('logo-header');
+                });
                 children.forEach(el => inner.appendChild(el));
                 slide.appendChild(inner);
                 // Garante que o número do slide fique por cima
@@ -989,7 +1007,10 @@
             inner.style.transform = 'scale(1)';
             // Espaço disponível dentro do cartão
             const availableW = slide.clientWidth;
-            const availableH = slide.clientHeight;
+            // Desconta a altura do header para manter o cabeçalho fixo/tamanho uniforme
+            const header = slide.querySelector('.logo-header');
+            const headerH = header ? header.offsetHeight : 0;
+            const availableH = slide.clientHeight - headerH - 8; // pequeno respiro
             // Tamanho do conteúdo real
             const contentW = inner.scrollWidth;
             const contentH = inner.scrollHeight;
