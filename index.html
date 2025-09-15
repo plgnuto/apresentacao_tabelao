@@ -64,20 +64,23 @@
             display: grid;
             grid-template-columns: auto 1fr auto;
             align-items: center;
-            margin-bottom: 18px;
+            margin: 0 calc(-1 * var(--padX)) 18px calc(-1 * var(--padX));
             padding: 12px 18px;
             border-bottom: 2px solid #f0f0f0;
             background: #001651;
             column-gap: 16px;
-            min-height: 74px; /* padroniza a altura do header */
-            /* Faz o header ocupar toda a largura do cartão branco (full-bleed dentro do slide) */
+            min-height: 74px;
             width: calc(100% + 2 * var(--padX));
-            margin-left: calc(-1 * var(--padX));
-            margin-right: calc(-1 * var(--padX));
-            /* Remove a faixa branca superior encaixando o header no topo do cartão */
+            /* Posicionamento fixo no topo do slide */
+            position: relative;
+            z-index: 10;
+            /* Remove a faixa branca superior */
             margin-top: calc(-1 * var(--padTop));
-            border-top-left-radius: 20px; /* igual ao slide */
-            border-top-right-radius: 20px; /* igual ao slide */
+            /* Borda arredondada apenas no topo */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            /* Garante que o conteúdo não fique por baixo */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .logo-header img {
@@ -435,6 +438,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+            padding: 0 20px;
             margin: 25px 0;
         }
 
@@ -444,6 +448,8 @@
             padding: 20px;
             border-radius: 15px;
             text-align: center;
+            margin: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .benefit-number {
@@ -584,26 +590,42 @@
         }
 
         @media (max-width: 900px) {
-            .features-screens { flex-direction: column; align-items: center; gap: 14px; }
-            .features-screens .screen { width: 92%; max-width: none; }
-            .features-screens .screen img { max-height: 150px; }
+            .features-screens { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 14px; 
+            }
+            .features-screens .screen { 
+                width: 92%; 
+                max-width: none; 
+            }
+            .features-screens .screen img { 
+                max-height: 150px; 
+            }
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .feature-item {
             display: flex;
             align-items: center;
-            padding: 12px;
             background: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #001651;
+            margin: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .feature-icon {
-            background: linear-gradient(0deg, #001651, #00267a);
-            color: white;
             width: 44px;
             height: 44px;
-            aspect-ratio: 1 / 1; /* garante círculo perfeito */
+            aspect-ratio: 1/1;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -611,8 +633,8 @@
             margin-right: 12px;
             font-weight: bold;
             font-size: 1.15em;
-            line-height: 1; /* evita achatamento do emoji */
-            flex: 0 0 44px; /* mantém largura fixa */
+            line-height: 1;
+            flex: 0 0 44px;
         }
 
         .pricing-card {
@@ -665,23 +687,20 @@
             border: 1px solid #eee;
         }
 
-        /* Compactação específica para o slide Proposta de Piloto */
-        .pilot-slide { --padX: 40px; padding: 14px var(--padX) 28px var(--padX); }
-        .pilot-slide .logo-header { margin-bottom: 14px; padding: 10px 14px; }
-        .pilot-slide .slide-header h2 { margin-bottom: 12px; font-size: 1.8em; }
-        .pilot-slide .subtitle { margin-bottom: 12px; font-size: 0.98em; }
-        .pilot-slide .pricing-card { padding: 20px; margin: 18px auto; }
-        .pilot-slide .price { font-size: 2.1em; margin: 8px 0; }
-        .pilot-slide h4 { margin: 0 0 6px 0; }
-        .pilot-slide ul { margin-top: 8px; }
+        /* Estilo base para todos os slides */
+        .slide { --padX: 40px; padding: 14px var(--padX) 28px var(--padX); }
+        
+        /* Ajuste para telas menores */
+        @media (max-width: 900px) {
+            .slide { --padX: 24px; padding: 16px var(--padX) 28px var(--padX); }
+        }
         @media (max-height: 680px) {
-            .pilot-slide { --padX: 32px; padding: 12px var(--padX) 24px var(--padX); }
-            .pilot-slide .logo-header { margin-bottom: 10px; padding: 8px 12px; }
-            .pilot-slide .slide-header h2 { font-size: 1.6em; margin-bottom: 10px; }
-            .pilot-slide .subtitle { font-size: 0.92em; margin-bottom: 10px; }
-            .pilot-slide .pricing-card { padding: 16px; margin: 14px auto; }
-            .pilot-slide .price { font-size: 1.9em; margin: 6px 0; }
-            .pilot-slide ul { line-height: 1.4; font-size: 0.95em; }
+            .slide { --padX: 32px; padding: 12px var(--padX) 24px var(--padX); }
+            h2 { font-size: 1.6em; margin-bottom: 10px; }
+            .subtitle { font-size: 0.92em; margin-bottom: 10px; }
+            .pricing-card { padding: 16px; margin: 14px auto; }
+            .price { font-size: 1.9em; margin: 6px 0; }
+            ul { line-height: 1.4; font-size: 0.95em; }
         }
     </style>
 </head>
